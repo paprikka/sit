@@ -1,0 +1,30 @@
+.container {
+  appearance: none;
+  margin: 0;
+  border: none;
+  border-radius: 100rem;
+  font-family: var(--font-family-button);
+  font-size: 1rem;
+  padding: 0.25rem 1rem 0.3rem;
+  font-weight: 300;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+
+.level-primary {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+.level-secondary {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.container:hover {
+  opacity: 0.9;
+}
+
+.container:active {
+  transform: scale(0.97);
+}

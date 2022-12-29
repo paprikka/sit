@@ -1,0 +1,9 @@
+.dot {
+  --w: min(3vw, 3vh);
+
+  display: block;
+  background-color: var(--color-text);
+  border-radius: 100rem;
+  width: var(--w);
+  height: var(--w);
+}

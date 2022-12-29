@@ -1,25 +1,27 @@
-import type { Component } from 'solid-js';
+import { Component, createSignal } from "solid-js";
 
-import logo from './logo.svg';
-import styles from './App.module.css';
+import styles from "./app.module.css";
+import { SetupView } from "./views/setup";
+import { ActiveView } from "./views/active";
+import { CompleteView } from "./views/complete";
+
+type Step = "setup" | "active" | "complete";
 
 const App: Component = () => {
+  const [step, setStep] = createSignal<Step>("setup");
+  const handleStepChange = (step: Step) => setStep(step);
+
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
+    <div class={styles.container}>
+      {step() === "setup" ? (
+        <SetupView onNext={() => handleStepChange("active")} />
+      ) : null}
+      {step() === "active" ? (
+        <ActiveView onNext={() => handleStepChange("complete")} />
+      ) : null}
+      {step() === "complete" ? (
+        <CompleteView onNext={() => handleStepChange("setup")} />
+      ) : null}
     </div>
   );
 };

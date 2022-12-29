@@ -1,0 +1,20 @@
+.container {
+  font-size: 1rem;
+}
+
+.dimmed {
+  opacity: 0.3;
+}
+
+.inline {
+  display: inline;
+  margin: 0;
+}
+
+.size-s {
+  font-size: 0.75rem;
+}
+
+.size-xs {
+  font-size: 0.5rem;
+}
