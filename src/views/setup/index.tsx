@@ -16,11 +16,14 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const [isActive, setIsActive] = createSignal(true);
   const handleNextClick = () => {
     setIsActive(false);
+    KeepAwake.enable();
+    // AudioService.arm().then(() => {
+    //   AudioService.play();
+    // });
     setTimeout(() => {
-      AudioService.arm().then(() => {
-        AudioService.play();
-        KeepAwake.enable();
-      });
+      AudioService.play();
+    }, 200);
+    setTimeout(() => {
       onNext();
     }, 1200);
   };
