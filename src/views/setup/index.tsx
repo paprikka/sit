@@ -15,6 +15,16 @@ const Spacer = () => <div class={styles.spacer} />;
 export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const [isActive, setIsActive] = createSignal(true);
   const handleNextClick = () => {
+    alert(
+      `
+Important: please don't lock your phone.
+
+We'll play a sound to let you know that the timer has expired and then every 1 minute, so you don't loose track of time. 
+
+Don't feel like you have to rush to get up. Enjoy.
+`.trim()
+    );
+
     setIsActive(false);
     KeepAwake.enable();
     // AudioService.arm().then(() => {
@@ -46,7 +56,7 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
         {store.durationMinutes() > 1 ? " minutes" : " minute"}.
         <br />
         <Text dimmed size="s" inline>
-          (and do nothing)
+          (<em>sit</em>, and do nothing)
         </Text>
       </Text>
 

@@ -14,7 +14,7 @@ export const CompleteView: Component<{ onNext: () => void }> = ({ onNext }) => {
   return (
     <ViewContainer isActive={isActive}>
       <Spacer />
-      <Text>Thanks, see you again soon!</Text>
+      <Text>Thanks! Come again any time.</Text>
       <Spacer />
       <Button label="Back to start" onClick={handleFinishEarlyClick} />
     </ViewContainer>

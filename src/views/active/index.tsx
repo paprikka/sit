@@ -68,9 +68,9 @@ export const ActiveView: Component<{
         minutes spent here
       </Text>
       <Spacer />
-      <div class={styles.dot}></div>
-      <Text dimmed size="s">
-        (You can set your phone aside for now)
+      {/* <div class={styles.dot}></div> */}
+      <Text size="s" dimmed>
+        (You can set your phone aside for now.)
       </Text>
       <Spacer />
       <div
