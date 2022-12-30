@@ -1,4 +1,4 @@
-import { Component } from "solid-js";
+import { Component, createSignal } from "solid-js";
 import { AudioService } from "../../audio";
 import { Button } from "../../components/button";
 import { DurationPicker } from "../../components/duration-picker";
@@ -9,16 +9,21 @@ import styles from "./index.module.css";
 import { Logo } from "./logo";
 
 import NoSleep from "nosleep.js";
+import { ViewContainer } from "../../components/view-container";
 
 const Spacer = () => <div class={styles.spacer} />;
 
 export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
+  const [isActive, setIsActive] = createSignal(true);
   const handleNextClick = () => {
-    AudioService.arm().then(() => {
-      AudioService.play();
-      KeepAwake.enable();
-    });
-    onNext();
+    setIsActive(false);
+    setTimeout(() => {
+      AudioService.arm().then(() => {
+        AudioService.play();
+        KeepAwake.enable();
+      });
+      onNext();
+    }, 2000);
   };
 
   const handleSelect = (durationMinutes: number) => {
@@ -27,10 +32,10 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   };
 
   return (
-    <div class={styles.container}>
+    <ViewContainer isActive={isActive}>
       <Spacer />
       <Logo />
-      <Text>
+      <Text align="center">
         I want to sit here for{" "}
         <DurationPicker
           value={store.durationMinutes()}
@@ -45,6 +50,6 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
 
       <Spacer />
       <Button label="Start" onClick={handleNextClick} />
-    </div>
+    </ViewContainer>
   );
 };

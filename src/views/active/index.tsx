@@ -20,7 +20,12 @@ const logger = makeLogger("ActiveSessionView");
 export const ActiveView: Component<{
   onNext: () => void;
 }> = ({ onNext }) => {
-  const handleFinishClick = () => onNext();
+  const [isActive, setIsActive] = createSignal(true);
+
+  const handleFinishClick = () => {
+    setIsActive(false);
+    setTimeout(onNext, 2000);
+  };
   const { durationSeconds } = store;
   // TODO: compute from timestamps
   const [sessionStage, setSessionStage] = createSignal<"before" | "after">(
@@ -57,7 +62,7 @@ export const ActiveView: Component<{
   });
 
   return (
-    <ViewContainer>
+    <ViewContainer isActive={isActive}>
       <Text dimmed size="xs" inline>
         {Math.floor((store.durationSeconds() - store.timeLeftSeconds()) / 60)}{" "}
         minutes spent here
