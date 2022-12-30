@@ -8,7 +8,6 @@ import { KeepAwake } from "../../utils/keep-awake";
 import styles from "./index.module.css";
 import { Logo } from "./logo";
 
-import NoSleep from "nosleep.js";
 import { ViewContainer } from "../../components/view-container";
 
 const Spacer = () => <div class={styles.spacer} />;
@@ -23,7 +22,7 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
         KeepAwake.enable();
       });
       onNext();
-    }, 2000);
+    }, 1200);
   };
 
   const handleSelect = (durationMinutes: number) => {

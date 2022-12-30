@@ -8,7 +8,7 @@ export const CompleteView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const [isActive, setIsActive] = createSignal(true);
   const handleFinishEarlyClick = () => {
     setIsActive(false);
-    setTimeout(onNext, 2000);
+    setTimeout(onNext, 1200);
   };
 
   return (

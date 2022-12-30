@@ -9,10 +9,10 @@
 }
 
 .isEntering {
-  animation: enter 2s;
+  animation: enter 1.2s;
 }
 .isExiting {
-  animation: exit 2s;
+  animation: exit 1.2s;
 }
 
 @keyframes enter {

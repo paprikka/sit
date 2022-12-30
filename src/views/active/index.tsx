@@ -24,7 +24,7 @@ export const ActiveView: Component<{
 
   const handleFinishClick = () => {
     setIsActive(false);
-    setTimeout(onNext, 2000);
+    setTimeout(onNext, 1200);
   };
   const { durationSeconds } = store;
   // TODO: compute from timestamps
@@ -70,7 +70,7 @@ export const ActiveView: Component<{
       <Spacer />
       <div class={styles.dot}></div>
       <Text dimmed size="s">
-        (You can set your phone aside now)
+        (You can set your phone aside for now)
       </Text>
       <Spacer />
       <div
