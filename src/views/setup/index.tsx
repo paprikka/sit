@@ -4,14 +4,19 @@ import { Button } from "../../components/button";
 import { DurationPicker } from "../../components/duration-picker";
 import { Text } from "../../components/text";
 import { store } from "../../data/store";
+import { KeepAwake } from "../../utils/keep-awake";
 import styles from "./index.module.css";
 import { Logo } from "./logo";
+
+import NoSleep from "nosleep.js";
 
 const Spacer = () => <div class={styles.spacer} />;
 
 export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const handleNextClick = () => {
-    AudioService.arm();
+    AudioService.arm().then(() => {
+      KeepAwake.enable();
+    });
     onNext();
   };
 

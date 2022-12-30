@@ -3,6 +3,7 @@ import {
   createEffect,
   createMemo,
   createSignal,
+  onCleanup,
   onMount,
 } from "solid-js";
 import { Button } from "../../components/button";
@@ -13,6 +14,8 @@ import { Spacer } from "../../components/spacer";
 import { Text } from "../../components/text";
 import { store } from "../../data/store";
 import { AudioService } from "../../audio";
+import { makeLogger } from "../../utils/log";
+const logger = makeLogger("ActiveSessionView");
 
 export const ActiveView: Component<{
   onNext: () => void;
@@ -24,15 +27,29 @@ export const ActiveView: Component<{
     "before"
   );
 
+  const timer = setInterval(() => {
+    store.tick();
+  }, 1000);
+
+  createEffect(() => {
+    const timeLeftSeconds = store.timeLeftSeconds();
+    if (timeLeftSeconds === 0) {
+      setSessionStage(() => "after");
+      store.stop(); // TODO: really?
+      AudioService.play();
+    } else if (timeLeftSeconds % 60 === 0) {
+      AudioService.play();
+    }
+  });
+
+  onCleanup(() => {
+    logger.log("cleanup");
+    clearInterval(timer);
+  });
+
   onMount(() => {
     store.start();
-
-    setTimeout(() => {
-      setSessionStage(() => "after");
-      store.stop();
-      AudioService.play();
-    }, durationSeconds() * 1000);
-    // }, 5_000);
+    logger.log(`total time ${durationSeconds()} sec.`);
   });
 
   return (

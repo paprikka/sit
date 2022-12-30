@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@fontsource/eb-garamond": "^4.5.10",
+    "@types/nosleep.js": "^0.10.0",
+    "nosleep.js": "^0.12.0",
     "solid-js": "^1.6.6"
   }
 }

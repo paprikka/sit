@@ -5,6 +5,7 @@ import { SetupView } from "./views/setup";
 import { ActiveView } from "./views/active";
 import { CompleteView } from "./views/complete";
 import { AudioService } from "./audio";
+import { KeepAwake } from "./utils/keep-awake";
 
 type Step = "setup" | "active" | "complete";
 
@@ -14,6 +15,7 @@ const App: Component = () => {
 
   onCleanup(() => {
     AudioService.destroy();
+    KeepAwake.destroy();
   });
 
   return (
