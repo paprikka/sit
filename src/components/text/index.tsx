@@ -6,13 +6,15 @@ export const Text: Component<{
   dimmed?: boolean;
   inline?: boolean;
   children: JSX.Element;
-}> = ({ dimmed, inline, children, size = "m" }) => {
+  align?: "start" | "center";
+}> = ({ dimmed, inline, children, size = "m", align = "start" }) => {
   return (
     <p
       classList={{
         [styles.container]: true,
         [styles.dimmed]: dimmed,
         [styles.inline]: inline,
+        [styles["align-" + align]]: true,
         [styles["size-" + size]]: true,
       }}
     >

@@ -18,3 +18,11 @@
 .size-xs {
   font-size: 0.5rem;
 }
+
+.align-start {
+  text-align: start;
+}
+
+.align-center {
+  text-align: center;
+}
