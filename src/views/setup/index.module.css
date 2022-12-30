@@ -20,13 +20,3 @@
 .container .quiet {
   opacity: 0.3;
 }
-
-.select {
-  background-color: transparent;
-  color: var(--color-text);
-  padding: 0.25rem;
-  margin: 0;
-  font-size: 1rem;
-  font-family: var(--font-family-body);
-  border: none;
-}

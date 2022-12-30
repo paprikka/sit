@@ -1,0 +1,55 @@
+.select {
+  background-color: transparent;
+  text-align: center;
+  color: var(--color-text);
+  padding: 0 0.5rem 0 0;
+  margin: 0 0.25rem;
+  font-size: 1rem;
+  font-family: var(--font-family-body);
+  appearance: none;
+  border: none;
+
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  cursor: pointer;
+}
+
+.selectContainer {
+  position: relative;
+}
+
+.selectOverlay {
+  padding: 0 0.3rem 0 0;
+
+  background-image: url(./down.svg);
+  background-size: 0.3rem;
+  background-repeat: no-repeat;
+  background-position: 98% 56%;
+
+  pointer-events: none;
+
+  text-align: right;
+
+  transition: 0.2s opacity;
+}
+
+.selectValue {
+  padding: 0 0.25rem;
+  border-bottom: 1px dashed;
+}
+
+/* .selectOverlay::after {
+    content: "";
+    background: url("./stroke.svg") bottom no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1rem;
+  } */
+.selectContainer:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}

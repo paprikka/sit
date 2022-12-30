@@ -1,31 +1,44 @@
-import { Component, createEffect, createSignal, onMount } from "solid-js";
+import {
+  Component,
+  createEffect,
+  createMemo,
+  createSignal,
+  onMount,
+} from "solid-js";
 import { Button } from "../../components/button";
 import { ViewContainer } from "../../components/view-container";
 import styles from "./index.module.css";
 
 import { Spacer } from "../../components/spacer";
 import { Text } from "../../components/text";
+import { store } from "../../data/store";
 
+import gong from "../../assets/gong.mp3";
+console.log(gong);
 export const ActiveView: Component<{
   onNext: () => void;
   durationSeconds: number;
-}> = ({ onNext, durationSeconds }) => {
+}> = ({ onNext }) => {
   const handleFinishClick = () => onNext();
-
+  const { durationSeconds } = store;
+  // TODO: compute from timestamps
   const [sessionStage, setSessionStage] = createSignal<"before" | "after">(
     "before"
   );
 
   onMount(() => {
+    store.start();
     setTimeout(() => {
       setSessionStage(() => "after");
-    }, durationSeconds);
+      store.stop();
+    }, durationSeconds() * 1000);
   });
 
   return (
     <ViewContainer>
       <Text dimmed size="xs" inline>
-        Elapsed time {durationSeconds}
+        {Math.floor((store.durationSeconds() - store.timeLeftSeconds()) / 60)}{" "}
+        minutes spent here
       </Text>
       <Spacer />
       <div class={styles.dot}></div>
