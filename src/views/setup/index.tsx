@@ -17,9 +17,9 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const handleNextClick = () => {
     alert(
       `
-Important: please don't lock your phone.
+Important: please don't lock your phone (we need this for the app to work).
 
-We'll play a sound to let you know that the timer has expired and then every 1 minute, so you don't loose track of time. 
+We'll play a sound to let you know that the timer has expired and every minute after that, so you don't loose track of time. 
 
 Don't feel like you have to rush to get up. Enjoy.
 `.trim()

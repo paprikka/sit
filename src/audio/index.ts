@@ -25,6 +25,7 @@ export const AudioService = {
       if (!el) return;
 
       el.src = gong;
+      el.volume = 0.2;
       return el.play();
     };
     if (!el) {
