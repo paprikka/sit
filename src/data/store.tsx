@@ -10,22 +10,25 @@ const createStore = () => {
   const durationMinutes = createMemo(() => Math.floor(durationSeconds() / 60));
 
   const [startedAtSeconds, setStartedAtSeconds] = createSignal(0);
-  const [timeLeftSeconds, setTimeLeftSeconds] = createSignal(0);
+  const [timeElapsedSeconds, setTimeElapsedSeconds] = createSignal(0);
+  const timeLeftSeconds = createMemo(
+    () => durationSeconds() - timeElapsedSeconds()
+  );
 
   const [timeLeftOffsetSeconds, setTimeLeftOffsetSeconds] =
     createSignal<number>(0);
 
   const tick = () => {
-    const newTimeLeftSeconds =
-      Math.floor(durationSeconds() + startedAtSeconds() - getNowSeconds()) -
+    const newTimeElapsedSeconds =
+      Math.floor(getNowSeconds() - startedAtSeconds()) +
       timeLeftOffsetSeconds();
-    logger.log({ newTimeLeftSeconds });
-    setTimeLeftSeconds(() => newTimeLeftSeconds);
+    logger.log({ newTimeElapsedSeconds });
+    setTimeElapsedSeconds(() => newTimeElapsedSeconds);
   };
 
   const start = () => {
     setStartedAtSeconds(() => getNowSeconds());
-    setTimeLeftSeconds(() => durationSeconds());
+    setTimeElapsedSeconds(() => 0);
   };
 
   const stop = () => {
@@ -43,7 +46,8 @@ const createStore = () => {
     setDurationSeconds,
     startedAtSeconds,
     timeLeftSeconds,
-    setTimeLeftSeconds,
+    timeElapsedSeconds,
+    setTimeElapsedSeconds,
     setTimeLeftOffsetSeconds,
     start,
     stop,

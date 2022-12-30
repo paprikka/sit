@@ -32,12 +32,16 @@ export const ActiveView: Component<{
   }, 1000);
 
   createEffect(() => {
-    const timeLeftSeconds = store.timeLeftSeconds();
-    if (timeLeftSeconds === 0) {
+    if (store.timeElapsedSeconds() === 0) return;
+
+    if (store.timeLeftSeconds() === 0 && store.timeElapsedSeconds() > 0) {
       setSessionStage(() => "after");
       store.stop(); // TODO: really?
       AudioService.play();
-    } else if (timeLeftSeconds % 60 === 0) {
+      return;
+    }
+
+    if (sessionStage() === "after" && store.timeLeftSeconds() % 60 === 0) {
       AudioService.play();
     }
   });

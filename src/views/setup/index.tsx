@@ -15,6 +15,7 @@ const Spacer = () => <div class={styles.spacer} />;
 export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const handleNextClick = () => {
     AudioService.arm().then(() => {
+      AudioService.play();
       KeepAwake.enable();
     });
     onNext();
