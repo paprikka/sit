@@ -1,4 +1,5 @@
 import { Component } from "solid-js";
+import { AudioService } from "../../audio";
 import { Button } from "../../components/button";
 import { DurationPicker } from "../../components/duration-picker";
 import { Text } from "../../components/text";
@@ -10,6 +11,7 @@ const Spacer = () => <div class={styles.spacer} />;
 
 export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const handleNextClick = () => {
+    AudioService.arm();
     onNext();
   };
 

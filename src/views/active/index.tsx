@@ -12,12 +12,10 @@ import styles from "./index.module.css";
 import { Spacer } from "../../components/spacer";
 import { Text } from "../../components/text";
 import { store } from "../../data/store";
+import { AudioService } from "../../audio";
 
-import gong from "../../assets/gong.mp3";
-console.log(gong);
 export const ActiveView: Component<{
   onNext: () => void;
-  durationSeconds: number;
 }> = ({ onNext }) => {
   const handleFinishClick = () => onNext();
   const { durationSeconds } = store;
@@ -28,10 +26,13 @@ export const ActiveView: Component<{
 
   onMount(() => {
     store.start();
+
     setTimeout(() => {
       setSessionStage(() => "after");
       store.stop();
+      AudioService.play();
     }, durationSeconds() * 1000);
+    // }, 5_000);
   });
 
   return (
