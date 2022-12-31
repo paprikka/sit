@@ -12,21 +12,41 @@ import { ViewContainer } from "../../components/view-container";
 
 const Spacer = () => <div class={styles.spacer} />;
 
+const Modal: Component<{ onClose: () => void }> = ({ onClose }) => (
+  <div class={styles.modal}>
+    <div class={styles.modalContent}>
+      <Text size="s">
+        <strong>
+          Important: please don't lock your phone (we need this for the app to
+          work).
+        </strong>
+        <br />
+        <br />
+        We'll play a sound to let you know that the timer has expired and every
+        minute after that, so you don't loose track of time.
+        <br />
+        <br />
+        Don't feel like you have to rush to get up. Enjoy.
+        <br />
+        <br />
+      </Text>
+      <Spacer />
+      <Button label="OK" onClick={onClose} />
+    </div>
+  </div>
+);
+
 export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const [isActive, setIsActive] = createSignal(true);
+  const [isModalVisible, setIsModalVisible] = createSignal(false);
+
   const handleNextClick = () => {
-    alert(
-      `
-Important: please don't lock your phone (we need this for the app to work).
-
-We'll play a sound to let you know that the timer has expired and every minute after that, so you don't loose track of time. 
-
-Don't feel like you have to rush to get up. Enjoy.
-`.trim()
-    );
-
-    setIsActive(false);
+    setIsModalVisible(true);
     KeepAwake.enable();
+  };
+
+  const handleModalClose = () => {
+    setIsActive(false);
     // AudioService.arm().then(() => {
     //   AudioService.play();
     // });
@@ -62,6 +82,7 @@ Don't feel like you have to rush to get up. Enjoy.
 
       <Spacer />
       <Button label="Start" onClick={handleNextClick} />
+      {isModalVisible() ? <Modal onClose={handleModalClose} /> : null}
     </ViewContainer>
   );
 };

@@ -24,7 +24,7 @@
   --page-margin: var(--page-margin-mobile);
 }
 
-@media all and (min-width: 400px) {
+@media all and (min-width: 420px) {
   :root {
     --page-margin: var(--page-margin-desktop);
     --font-size-base: 40px;

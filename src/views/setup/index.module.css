@@ -7,3 +7,41 @@
   width: 4rem;
   height: auto;
 }
+
+.modal {
+  position: fixed;
+  inset: var(--page-margin);
+  display: grid;
+  place-content: center;
+}
+
+.modalContent {
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-text);
+  padding: calc(var(--ru) * 0.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.25rem;
+  /* max-width: 15rem; */
+
+  animation: modal-enter 1s;
+}
+
+@media all and (min-width: 420px) {
+  .modalContent {
+    max-width: 15rem;
+  }
+}
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal p:first-of-type {
+  margin-top: 0;
+}
