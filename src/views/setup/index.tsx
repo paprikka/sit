@@ -10,32 +10,9 @@ import { Logo } from "./logo";
 
 import { ViewContainer } from "../../components/view-container";
 import { Tracking } from "../../tracking";
+import { Modal } from "./modal";
 
 const Spacer = () => <div class={styles.spacer} />;
-
-const Modal: Component<{ onClose: () => void }> = ({ onClose }) => (
-  <div class={styles.modal}>
-    <div class={styles.modalContent}>
-      <Text size="s">
-        <strong>
-          Important: please don't lock your phone (we need this for the app to
-          work).
-        </strong>
-        <br />
-        <br />
-        We'll play a sound to let you know that the timer has expired and every
-        minute after that, so you don't loose track of time.
-        <br />
-        <br />
-        Don't rush to get up. Enjoy.
-        <br />
-        <br />
-      </Text>
-      <Spacer />
-      <Button label="OK" onClick={onClose} />
-    </div>
-  </div>
-);
 
 export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const [isActive, setIsActive] = createSignal(true);
