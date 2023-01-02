@@ -11,7 +11,8 @@
   --color-text: #fff;
   --color-bg: #000;
 
-  --font-family-base: "EB Garamond", Georgia, "Times New Roman", Times, serif;
+  --font-family-base: "EB GaramondVariable", Georgia, "Times New Roman", Times,
+    serif;
 
   --font-family-body: var(--font-family-base);
   --font-family-button: var(--font-family-body);

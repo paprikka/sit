@@ -1,5 +1,5 @@
 /* @refresh reload */
-import "@fontsource/eb-garamond";
+import "@fontsource/eb-garamond/variable.css";
 
 import { render } from "solid-js/web";
 
