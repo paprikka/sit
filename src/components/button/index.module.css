@@ -9,6 +9,7 @@
   font-weight: 300;
   vertical-align: bottom;
   cursor: pointer;
+  transition: 0.3s opacity, 0.2s transform;
 }
 
 .level-primary {

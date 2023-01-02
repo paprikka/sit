@@ -10,7 +10,7 @@ import { Logo } from "./logo";
 
 import { ViewContainer } from "../../components/view-container";
 import { Tracking } from "../../tracking";
-import { Modal } from "./modal";
+import { Modal } from "../../components/modal";
 
 const Spacer = () => <div class={styles.spacer} />;
 
@@ -64,6 +64,14 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
       <Spacer />
       <Button label="Start" onClick={handleNextClick} />
       {isModalVisible() ? <Modal onClose={handleModalClose} /> : null}
+
+      <footer class={styles.footer}>
+        <Text align="center" size="xs">
+          <a href="https://sonnet.io" target="_blank">
+            Made by 🐐 and <span>Rafal Pastuszak</span>
+          </a>
+        </Text>
+      </footer>
     </ViewContainer>
   );
 };

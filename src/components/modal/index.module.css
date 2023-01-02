@@ -1,0 +1,43 @@
+.container {
+  position: fixed;
+  inset: var(--page-margin);
+  display: grid;
+  place-content: center;
+
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.4);
+  animation: container-enter 1s;
+}
+
+.containerContent {
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-text);
+  padding: calc(var(--ru) * 0.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.25rem;
+  /* max-width: 15rem; */
+}
+
+@media all and (min-width: 420px) {
+  .container {
+    inset: 0;
+  }
+  .containerContent {
+    max-width: 15rem;
+  }
+}
+@keyframes container-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.container p:first-of-type {
+  margin-top: 0;
+}

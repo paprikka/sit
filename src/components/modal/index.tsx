@@ -4,8 +4,8 @@ import { Spacer } from "../../components/spacer";
 import { Text } from "../../components/text";
 import styles from "./index.module.css";
 export const Modal: Component<{ onClose: () => void }> = ({ onClose }) => (
-  <div class={styles.modal}>
-    <div class={styles.modalContent}>
+  <div class={styles.container}>
+    <div class={styles.containerContent}>
       <Text size="s">
         <strong>
           Important: please don't lock your phone (we need this for the page to
