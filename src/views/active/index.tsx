@@ -17,6 +17,8 @@ import { AudioService } from "../../audio";
 import { makeLogger } from "../../utils/log";
 const logger = makeLogger("ActiveSessionView");
 
+const isMobile = "ontouchstart" in window;
+
 export const ActiveView: Component<{
   onNext: () => void;
 }> = ({ onNext }) => {
@@ -70,8 +72,11 @@ export const ActiveView: Component<{
       <Spacer />
       {/* <div class={styles.dot}></div> */}
       <Text size="s" dimmed>
-        (You can set your phone aside for now.)
+        {isMobile
+          ? `(You can set your phone aside for now.)`
+          : `(You can stop looking at the screen for now.)`}
       </Text>
+
       <Spacer />
       <div
         classList={{
