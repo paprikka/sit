@@ -20,6 +20,24 @@ import { makeLogger } from "../../utils/log";
 const logger = makeLogger("ActiveSessionView");
 const isMobile = "ontouchstart" in window;
 
+const TimeSpent = () => {
+  const label = createMemo(() => {
+    const timeLeftMinutes = Math.floor(
+      (store.durationSeconds() - store.timeLeftSeconds()) / 60
+    );
+
+    if (timeLeftMinutes < 1) return `You've been here for < 1 minute.`;
+    if (timeLeftMinutes === 1) return `You've been here for a minute.`;
+    return `You've been here for ${timeLeftMinutes} minutes.`;
+  });
+
+  return (
+    <Text dimmed size="xs" inline>
+      {label()}
+    </Text>
+  );
+};
+
 export const ActiveView: Component<{
   onNext: () => void;
 }> = ({ onNext }) => {
@@ -86,10 +104,7 @@ export const ActiveView: Component<{
 
   return (
     <ViewContainer isActive={isActive}>
-      <Text dimmed size="xs" inline>
-        {Math.floor((store.durationSeconds() - store.timeLeftSeconds()) / 60)}{" "}
-        minutes spent here
-      </Text>
+      <TimeSpent />
       <Spacer />
       {/* <div class={styles.dot}></div> */}
       <Text size="s" dimmed>
