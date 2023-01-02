@@ -9,6 +9,7 @@ import styles from "./index.module.css";
 import { Logo } from "./logo";
 
 import { ViewContainer } from "../../components/view-container";
+import { Tracking } from "../../tracking";
 
 const Spacer = () => <div class={styles.spacer} />;
 
@@ -26,7 +27,7 @@ const Modal: Component<{ onClose: () => void }> = ({ onClose }) => (
         minute after that, so you don't loose track of time.
         <br />
         <br />
-        Don't feel like you have to rush to get up. Enjoy.
+        Don't rush to get up. Enjoy.
         <br />
         <br />
       </Text>
@@ -41,12 +42,14 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const [isModalVisible, setIsModalVisible] = createSignal(false);
 
   const handleNextClick = () => {
+    Tracking.track("Click: First CTA");
     setIsModalVisible(true);
     KeepAwake.enable();
   };
 
   const handleModalClose = () => {
     setIsActive(false);
+    Tracking.track("Click: Confirm Modal");
     // AudioService.arm().then(() => {
     //   AudioService.play();
     // });
@@ -59,6 +62,7 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   };
 
   const handleSelect = (durationMinutes: number) => {
+    Tracking.track(`Select Duration: ${durationMinutes} minutes`);
     const durationSeconds = durationMinutes * 60;
     store.setDurationSeconds(() => durationSeconds);
   };

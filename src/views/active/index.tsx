@@ -10,13 +10,14 @@ import { Button } from "../../components/button";
 import { ViewContainer } from "../../components/view-container";
 import styles from "./index.module.css";
 
+import { AudioService } from "../../audio";
 import { Spacer } from "../../components/spacer";
 import { Text } from "../../components/text";
 import { store } from "../../data/store";
-import { AudioService } from "../../audio";
+import { Tracking } from "../../tracking";
 import { makeLogger } from "../../utils/log";
-const logger = makeLogger("ActiveSessionView");
 
+const logger = makeLogger("ActiveSessionView");
 const isMobile = "ontouchstart" in window;
 
 export const ActiveView: Component<{
@@ -25,6 +26,11 @@ export const ActiveView: Component<{
   const [isActive, setIsActive] = createSignal(true);
 
   const handleFinishClick = () => {
+    if (sessionStage() === "after") {
+      Tracking.track("Session Completed");
+    } else {
+      Tracking.track("Session Interrupted");
+    }
     setIsActive(false);
     setTimeout(onNext, 1200);
   };
@@ -37,6 +43,20 @@ export const ActiveView: Component<{
   const timer = setInterval(() => {
     store.tick();
   }, 1000);
+
+  const timeLeftMinutes = createMemo(() =>
+    Math.floor(store.timeElapsedSeconds() / 60)
+  );
+
+  createEffect(() => {
+    Tracking.track(`Time Elapsed: ${timeLeftMinutes()}`);
+  });
+
+  const hasReachedFirst30s = createMemo(() => store.timeElapsedSeconds() >= 30);
+  createEffect(() => {
+    if (!hasReachedFirst30s()) return;
+    Tracking.track(`First 30s`);
+  });
 
   createEffect(() => {
     if (store.timeElapsedSeconds() === 0) return;
