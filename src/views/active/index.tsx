@@ -49,6 +49,7 @@ export const ActiveView: Component<{
   );
 
   createEffect(() => {
+    if (timeLeftMinutes() < 1) return;
     Tracking.track(`Time Elapsed: ${timeLeftMinutes()}`);
   });
 
