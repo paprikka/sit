@@ -17,7 +17,7 @@ export const Modal: Component<{ onClose: () => void }> = ({ onClose }) => (
         <br />
         <br />
         We'll play a sound to let you know that the timer has expired and every
-        minute after that, so you don't loose track of time.
+        minute after that, so you don't lose track of time.
         <br />
         <br />
         Enjoy.
