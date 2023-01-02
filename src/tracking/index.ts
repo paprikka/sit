@@ -1,6 +1,6 @@
 import { makeLogger } from "../utils/log";
 
-const isLocal = () => window.location.host !== "localhost";
+const isLocal = () => window.location.host === "localhost";
 
 declare global {
   const umami: (event: string) => void;
