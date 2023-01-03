@@ -1,7 +1,6 @@
 import { makeLogger } from "../utils/log";
 
 const isLocal = () => window.location.hostname === "localhost";
-
 declare global {
   const umami: (event: string) => void;
 }
@@ -14,6 +13,7 @@ const mockTrack = (event: string) => {
 };
 
 const track = (event: string) => {
+  if (!umami) return;
   umami(event);
 };
 
