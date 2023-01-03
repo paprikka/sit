@@ -57,7 +57,7 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
         {store.durationMinutes() > 1 ? " minutes" : " minute"}.
         <br />
         <Text dimmed size="s" inline>
-          (<em>sit</em>, and do nothing)
+          (<em>sit</em>, and do <em>nothing</em>)
         </Text>
       </Text>
 
@@ -68,7 +68,7 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
       <footer class={styles.footer}>
         <Text align="center" size="xs">
           <a href="https://sonnet.io" target="_blank">
-            Made by 🐐 and <span>Rafal Pastuszak</span>
+            Made by 🐐 and <span>Rafał Pastuszak</span>
           </a>
         </Text>
       </footer>

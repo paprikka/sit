@@ -1,5 +1,6 @@
 .container {
   font-size: 1rem;
+  line-height: calc(var(--ru) * 1em);
 }
 
 .container strong {
@@ -29,4 +30,17 @@
 
 .align-center {
   text-align: center;
+}
+
+.container a {
+  color: var(--color-text);
+  opacity: 0.6;
+  font-weight: 300;
+  font-style: italic;
+  text-decoration: none;
+  transition: 0.3s opacity;
+}
+
+.container a:hover {
+  opacity: 1;
 }

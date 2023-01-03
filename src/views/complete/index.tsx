@@ -4,6 +4,7 @@ import { Spacer } from "../../components/spacer";
 import { Text } from "../../components/text";
 import { ViewContainer } from "../../components/view-container";
 import { Tracking } from "../../tracking";
+import styles from "./index.module.css";
 
 export const CompleteView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const [isActive, setIsActive] = createSignal(true);
@@ -16,7 +17,20 @@ export const CompleteView: Component<{ onNext: () => void }> = ({ onNext }) => {
   return (
     <ViewContainer isActive={isActive}>
       <Spacer />
-      <Text>Thanks! Come again any time.</Text>
+      <Text inline>Thanks! Come again any time.</Text>
+      <div class={styles.linkList}>
+        <Text inline size="s">
+          <a target="_blank" href="https://sonnet.io">
+            About
+          </a>
+        </Text>
+        <Text inline size="s">
+          <a target="_blank" href="https://sonnet.io/posts/hi">
+            Say Hi
+          </a>
+        </Text>
+      </div>
+
       <Spacer />
       <Button label="Back to start" onClick={handleFinishEarlyClick} />
     </ViewContainer>

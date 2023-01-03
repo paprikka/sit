@@ -14,17 +14,10 @@
 }
 
 .footer a {
-  color: var(--color-text);
-  opacity: 0.5;
-  font-weight: 300;
   text-decoration: none;
-  transition: 0.3s opacity;
-}
-
-.footer a:hover {
-  opacity: 1;
+  font-style: unset;
 }
 
 .footer span {
-  border-bottom: 1px dashed white;
+  font-style: italic;
 }

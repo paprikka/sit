@@ -1,0 +1,22 @@
+.linkList {
+  margin-top: calc(var(--ru) * 0.25rem);
+  display: flex;
+  gap: 0.5em;
+}
+
+.linkList > *:not(:first-child) {
+  position: relative;
+  padding-left: 0.9em;
+}
+
+.linkList > *:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  width: 0.1rem;
+  height: 0.1rem;
+  border-radius: 100rem;
+  background-color: var(--color-text);
+  top: 50%;
+  left: 0.05rem;
+  opacity: 0.3;
+}
