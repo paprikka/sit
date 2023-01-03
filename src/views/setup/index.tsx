@@ -49,12 +49,13 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
       <Spacer />
       <Logo />
       <Text align="center">
-        I want to sit here for{" "}
+        I want to sit here for&nbsp;
         <DurationPicker
           value={store.durationMinutes()}
           onChange={handleSelect}
         />
-        {store.durationMinutes() > 1 ? " minutes" : " minute"}.
+        &nbsp;
+        {store.durationMinutes() > 1 ? "minutes" : "minute"}.
         <br />
         <Text dimmed size="s" inline>
           (<em>sit</em>, and do <em>nothing</em>)
