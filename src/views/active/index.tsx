@@ -16,9 +16,9 @@ import { Text } from "../../components/text";
 import { store } from "../../data/store";
 import { Tracking } from "../../tracking";
 import { makeLogger } from "../../utils/log";
+import { isMobile } from "../../utils/is-mobile";
 
 const logger = makeLogger("ActiveSessionView");
-const isMobile = "ontouchstart" in window;
 
 const TimeSpent = () => {
   const label = createMemo(() => {

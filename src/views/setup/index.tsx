@@ -8,11 +8,40 @@ import { KeepAwake } from "../../utils/keep-awake";
 import styles from "./index.module.css";
 import { Logo } from "./logo";
 
+import { Modal } from "../../components/modal";
 import { ViewContainer } from "../../components/view-container";
 import { Tracking } from "../../tracking";
-import { Modal } from "../../components/modal";
+import { isMobile } from "../../utils/is-mobile";
 
 const Spacer = () => <div class={styles.spacer} />;
+
+const optionallyRequestFullscreen = () => {
+  if (isMobile) return;
+
+  const handler = () => {
+    if (document.documentElement.requestFullscreen) {
+      return document.documentElement.requestFullscreen();
+    }
+
+    if ((document.documentElement as unknown as any).webkitRequestFullscreen) {
+      return new Promise((resolve, reject) => {
+        try {
+          resolve(
+            (
+              document.documentElement as unknown as any
+            ).webkitRequestFullscreen()
+          );
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }
+
+    return Promise.resolve();
+  };
+
+  return handler().catch(() => Tracking.track("Error: fullsceen request"));
+};
 
 export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
   const [isActive, setIsActive] = createSignal(true);
@@ -30,6 +59,9 @@ export const SetupView: Component<{ onNext: () => void }> = ({ onNext }) => {
     // AudioService.arm().then(() => {
     //   AudioService.play();
     // });
+
+    optionallyRequestFullscreen();
+
     setTimeout(() => {
       AudioService.play();
     }, 200);
