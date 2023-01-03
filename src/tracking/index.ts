@@ -13,7 +13,7 @@ const mockTrack = (event: string) => {
 };
 
 const track = (event: string) => {
-  if (!umami) return;
+  if (!("umami" in window)) return;
   umami(event);
 };
 
