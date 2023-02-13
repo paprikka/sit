@@ -20,7 +20,7 @@ export const CompleteView: Component<{ onNext: () => void }> = ({ onNext }) => {
       <Text inline>Thanks! Come again any time.</Text>
       <div class={styles.linkList}>
         <Text inline size="s">
-          <a target="_blank" href="https://sonnet.io">
+          <a target="_blank" href="https://sonnet.io/posts/sit">
             About
           </a>
         </Text>
