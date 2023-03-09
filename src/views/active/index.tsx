@@ -20,20 +20,20 @@ import { isMobile } from "../../utils/is-mobile";
 
 const logger = makeLogger("ActiveSessionView");
 
-const TimeSpent = () => {
+const TimeSpent: Component = () => {
   const label = createMemo(() => {
-    const timeLeftMinutes = Math.floor(
-      (store.durationSeconds() - store.timeLeftSeconds()) / 60
-    );
+    const timeLeftSeconds = store.durationSeconds() - store.timeLeftSeconds();
+    const timeLeftMinutes = Math.floor(timeLeftSeconds / 60);
 
     if (timeLeftMinutes < 1) return `You've been here for < 1 minute.`;
     if (timeLeftMinutes === 1) return `You've been here for a minute.`;
+
     return `You've been here for ${timeLeftMinutes} minutes.`;
   });
 
   return (
     <Text dimmed size="xs" inline>
-      {label()}
+      <span>{label()}</span>
     </Text>
   );
 };
