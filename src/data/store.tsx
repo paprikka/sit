@@ -35,7 +35,7 @@ const createStore = () => {
     logger.log("stop");
   };
 
-  const durations = Array(100)
+  const durations = Array(999)
     .fill(null)
     .map((_, ind) => ind + 1);
 
