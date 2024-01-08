@@ -6,6 +6,14 @@ export default defineConfig({
   plugins: [
     solidPlugin(),
     VitePWA({
+      manifest: {
+        background_color: "#000000",
+        description:
+          "Share with a friend who needs to sit the fuck down or enjoy the experience yourself.",
+        name: "Sit.",
+        orientation: "portrait",
+        theme_color: "#000000",
+      },
       registerType: "autoUpdate",
       devOptions: {
         enabled: process.env.SW_DEV === "true",
