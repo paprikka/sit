@@ -11,6 +11,7 @@ export default defineConfig({
         description:
           "Share with a friend who needs to sit the fuck down or enjoy the experience yourself.",
         name: "Sit.",
+        short_name: "Sit.",
         orientation: "portrait",
         theme_color: "#000000",
       },
