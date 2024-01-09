@@ -6,10 +6,12 @@
     "start": "vite",
     "dev": "rm -rf dev-dist && vite",
     "build": "rm -rf dev-dist && vite build",
+    "generate-assets": "pwa-assets-generator --preset minimal-2023 public/app-icon.svg",
     "serve": "vite preview"
   },
   "license": "MIT",
   "devDependencies": {
+    "@vite-pwa/assets-generator": "^0.2.2",
     "typescript": "^4.9.4",
     "vite": "^5.0.11",
     "vite-plugin-pwa": "^0.17.4",
