@@ -7,6 +7,7 @@ export default defineConfig({
     solidPlugin(),
     VitePWA({
       manifest: {
+        start_url: "/",
         background_color: "#000000",
         description:
           "Share with a friend who needs to sit the fuck down or enjoy the experience yourself.",
@@ -14,6 +15,35 @@ export default defineConfig({
         short_name: "Sit.",
         orientation: "portrait",
         theme_color: "#000000",
+        icons: [
+          {
+            src: "app-icon-64.png",
+            sizes: "64x64",
+            type: "image/png",
+          },
+          {
+            src: "app-icon-192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "app-icon-512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+          {
+            src: "app-icon-512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any",
+          },
+          {
+            src: "app-icon-512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
+        ],
       },
       registerType: "autoUpdate",
       devOptions: {
