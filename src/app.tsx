@@ -1,4 +1,4 @@
-import { Component, createSignal, onCleanup } from "solid-js";
+import { Component, createSignal, onCleanup, onMount } from "solid-js";
 
 import styles from "./app.module.css";
 import { SetupView } from "./views/setup";
@@ -14,12 +14,15 @@ const App: Component = () => {
   const [step, setStep] = createSignal<Step>("setup");
   const handleStepChange = (step: Step) => setStep(step);
 
-  onCleanup(() => {
-    AudioService.destroy();
-    KeepAwake.destroy();
+  onMount(() => {
     if ("standalone" in window.navigator && window.navigator.standalone) {
       Tracking.track("ios:standalone");
     }
+  });
+
+  onCleanup(() => {
+    AudioService.destroy();
+    KeepAwake.destroy();
   });
 
   return (
