@@ -6,6 +6,7 @@ import { ActiveView } from "./views/active";
 import { CompleteView } from "./views/complete";
 import { AudioService } from "./audio";
 import { KeepAwake } from "./utils/keep-awake";
+import { Tracking } from "./tracking";
 
 type Step = "setup" | "active" | "complete";
 
@@ -16,6 +17,9 @@ const App: Component = () => {
   onCleanup(() => {
     AudioService.destroy();
     KeepAwake.destroy();
+    if ("standalone" in window.navigator && window.navigator.standalone) {
+      Tracking.track("ios:standalone");
+    }
   });
 
   return (
