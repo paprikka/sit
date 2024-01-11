@@ -20,13 +20,17 @@ export const AudioService = {
   },
 
   async play() {
-    const trigger = () => {
+    const trigger = async () => {
       logger.log(`Play ${gong}`);
       if (!el) return;
 
       el.src = gong;
       el.volume = 0.2;
-      return el.play();
+      try {
+        await el.play();
+      } catch (error) {
+        console.error(error);
+      }
     };
     if (!el) {
       logger.warn("Init the Audio element first. Trying to init now...");

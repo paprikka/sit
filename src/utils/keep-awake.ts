@@ -1,7 +1,8 @@
-import NoSleep from "nosleep.js";
+import NoSleep from "@zakj/no-sleep";
+import type { INoSleep } from "@zakj/no-sleep";
 import { makeLogger } from "./log";
 
-let instance: NoSleep | null = null;
+let instance: INoSleep | null = null;
 let wakeLock: WakeLockSentinel | null = null;
 
 const logger = makeLogger("KeepAwake");
@@ -10,24 +11,13 @@ export const KeepAwake = {
   async enable() {
     logger.log("enable");
 
-    if ("wakeLock" in navigator) {
-      navigator.wakeLock
-        .request("screen")
-        .then((_) => (wakeLock = _))
-        .catch(logger.error);
-    } else {
-      instance = new NoSleep();
-      instance.enable();
-    }
+    instance = new NoSleep();
+    instance.enable();
   },
 
   destroy() {
     logger.log("destroy");
-    if (wakeLock) {
-      wakeLock.release();
-      wakeLock = null;
-      return;
-    }
+
     if (!instance) return;
     instance.disable();
   },
