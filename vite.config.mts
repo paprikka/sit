@@ -14,6 +14,7 @@ export default defineConfig({
         name: "Sit.",
         short_name: "Sit.",
         orientation: "portrait",
+        displayMode: "standalone",
         theme_color: "#000000",
         icons: [
           {
