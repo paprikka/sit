@@ -32,3 +32,19 @@ Your app is ready to be deployed!
 ## Deployment
 
 You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+
+## Docker
+
+### Build
+
+```bash
+docker build -t sit .
+```
+
+### Run
+
+```bash
+docker run -p 80:80 sit
+```
+
+The app will be available at [http://localhost](http://localhost)
